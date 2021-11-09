@@ -324,6 +324,12 @@ H5P.ImageHotspotQuestion = (function ($, Question) {
         this.getScore(),
         this.getMaxScore()
       );
+       ///customization
+       var hospot_answer = "False";
+       if (hotspot && hotspot.userSettings.correct) {
+          hospot_answer = "True";
+       }
+       customProgressedEvent.data.statement.result["response"] = hospot_answer;
       this.trigger(customProgressedEvent);
     }
   };
@@ -362,6 +368,7 @@ H5P.ImageHotspotQuestion = (function ($, Question) {
    * @returns {boolean}
    */
   ImageHotspotQuestion.prototype.getAnswerGiven = function () {
+    console.log(this.hotspotFeedback.hotspotChosen.correct);
     return this.hotspotChosen;
   };
 
